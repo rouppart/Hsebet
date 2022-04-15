@@ -1,0 +1,23 @@
+@tailwind utilities;
+@tailwind components;
+@tailwind base;
+
+@layer base {
+    input {
+        @apply border rounded px-1 py-0.5;
+    }
+}
+
+@layer components {
+    .btn {
+        @apply bg-slate-300 px-2 py-1;
+    }
+}
+
+body {
+     @apply bg-sky-700;
+}
+
+h2 {
+    @apply text-2xl font-bold;
+}
