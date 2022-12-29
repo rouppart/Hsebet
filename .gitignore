@@ -25,4 +25,3 @@ dist-ssr
 
 tailwind.config.cjs
 package-lock.json
-tsconfig.node.json

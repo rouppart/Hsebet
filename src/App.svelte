@@ -13,9 +13,9 @@
     const totalWeight = weighedQuantities.reduce((p, c) => p + c, 0);
     originalPerPerson = groups.map((e, i) => grandTotal * weighedQuantities[i] / totalWeight / e.quantity);
   }
-  $: payersQuantityByGroup = groups.map((_, ig) => {
-    return payments.reduce((p, c) => p + c.quantityByGroupIndex[ig] || 0, 0);
-  }) as number[];
+  $: payersQuantityByGroup = groups.map(
+    (_, ig) => payments.reduce((p, c) => p + c.quantityByGroupIndex[ig] || 0, 0)
+  ) as number[];
   $: totalPayments = payments.reduce((p, c) => p + c.amount, 0);
   $: remainingTotal = grandTotal - totalPayments;
   $: remainingQuantityByGroup = groups.map((e, ig) => e.quantity - payersQuantityByGroup[ig]);
@@ -49,7 +49,7 @@
   }
 
   function addPayment() {
-    payments = [...payments, {quantityByGroupIndex: [0], amount: 0, description: ''}];
+    payments = [...payments, {quantityByGroupIndex: Array(groups.length).fill(0), amount: 0, description: ''}];
   }
 
   function deletePayment(index: number) {
@@ -135,6 +135,7 @@
       <td><button class="text-green-600 text-3xl px-1" on:click={addGroup}>+</button></td>
       <td></td>
       <td class="text-right" class:text-red-500={remainingTotal >= 1}>{format(remainingTotal)}</td>
+      <td></td>
     </tr>
   </table>
   {/if}
@@ -154,9 +155,9 @@
     {#each payments as payment, i}
     <tr>
       {#each groups as _, ig}
-      <td><input type="number" class="w-16" bind:value={payment.quantityByGroupIndex[ig]}></td>
+      <td><input type="number" class="w-12" bind:value={payment.quantityByGroupIndex[ig]}></td>
       {/each}
-      <td><input type="number" class="w-32" bind:value={payment.amount}></td>
+      <td><input type="number" class="w-20" bind:value={payment.amount}></td>
       <td><input type="text" bind:value={payment.description}></td>
       <td><button class="text-red-500 font-bold text-xl px-1" on:click={() => deletePayment(i)}>X</button></td>
     </tr>
@@ -187,6 +188,6 @@
     }
 
     td, th {
-        @apply p-2 border-2 border-sky-300;
+        @apply p-1 border-2 border-sky-300;
     }
 </style>

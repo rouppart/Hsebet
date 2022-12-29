@@ -3,6 +3,18 @@
 @tailwind base;
 
 @layer base {
+    html {
+        font-size: 10px;
+    }
+
+    body {
+         @apply bg-sky-700;
+    }
+
+    h2 {
+        @apply text-2xl font-bold;
+    }
+
     input {
         @apply border rounded px-1 py-0.5;
     }
@@ -12,12 +24,4 @@
     .btn {
         @apply bg-slate-300 px-2 py-1;
     }
-}
-
-body {
-     @apply bg-sky-700;
-}
-
-h2 {
-    @apply text-2xl font-bold;
 }
