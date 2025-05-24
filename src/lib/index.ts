@@ -2,12 +2,11 @@
 
 export interface Group {
 	name: string;
-	quantity: number;
 	ratio: 1;
 }
 
 export interface Payment {
 	description: string;
-	amount: number;
-	quantityByGroupIndex: number[];
+	amount: number | null;
+	countByGroupIndex: number[];
 }
