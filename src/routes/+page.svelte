@@ -75,7 +75,13 @@
 	}
 
 	function deletePayment(index: number) {
-		payments = payments.filter((_, i) => i !== index);
+		if (
+			(payments[index].description || payments[index].amount) &&
+			!confirm('Are you sure you want to delete payment?')
+		) {
+			return;
+		}
+		payments.splice(index, 1);
 	}
 
 	function reset() {
